@@ -44,6 +44,14 @@
                         </form>                                                    
                     </td> 
                 </tr>
+                <tr>
+                    <td>-- 4) DATOS LIBRO --</td>
+                    <td>
+                        <form name="IR" action="datoslibro.jsp" method="POST">
+                            <input type="submit" value="IR" />
+                        </form>                                                    
+                    </td> 
+                </tr>
             </tbody>
         </table>
     </body>

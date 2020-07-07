@@ -23,7 +23,7 @@
         <table border="1" cellspacing="1" cellpadding="1" align = "center" >
             <thead>
                 <tr>
-                    <th>Nro</th>
+                    
                     <th>AUTOR</th>
                     <th>TITULO</th>
                     <th>CANTIDAD</th>
@@ -39,18 +39,28 @@
                     try {
                         ConectaBd bd = new ConectaBd();
                         cn = bd.getConnection();
-                        consulta = " select ideditorial, nombre, estado "
-                                + " from editorial "
-                                + " ORDER BY nombre ASC";
+                        consulta = "SELECT l.idlibro, a.nombre, l.titulo, l.cantidad, l.anio, e.nombre, p.nombre, l.precio, l.estado "
+                                 + "FROM autor a, libro l, editorial e, pais p "
+                                 + "WHERE a.idautor = l.idautor "
+                                 + "AND e.ideditorial = l.ideditorial "
+                                 + "AND p.idpais = l.idpais "
+                                 + "order by a.nombre asc ";
+                                 
                         //out.print(consulta);
                         pst = cn.prepareStatement(consulta);
                         rs = pst.executeQuery();
                         while (rs.next()) {
                         %>
-                        <tr>
-                            <td><%out.print(rs.getString(1));%></td>
-                            <td><%out.print(rs.getString(2));%></td>
-                            <td><%out.print(rs.getString(3));%></td>
+                        <tr align="center" >
+                            <td text="center"><%out.print(rs.getString(1));%></td>
+                            <td text="center"><%out.print(rs.getString(2));%></td>
+                            <td text="center"><%out.print(rs.getString(3));%></td>
+                            <td text="center"><%out.print(rs.getString(4));%></td>
+                            <td text="center"><%out.print(rs.getString(5));%></td>
+                            <td text="center"><%out.print(rs.getString(6));%></td>
+                            <td text="center"><%out.print(rs.getString(7));%></td>
+                            <td text="center"><%out.print(rs.getString(8));%></td>
+
                         </tr>
                         <%
                         }
